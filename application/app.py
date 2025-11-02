@@ -5,7 +5,8 @@ import numpy as np
 from sklearn.datasets import load_iris
 
 
-MODEL_PATH = "artifacts/model.pkl" 
+# MODEL_PATH = "application/artifacts/svm_iris_model.joblib" 
+MODEL_PATH = "artifacts/svm_iris_model.joblib" 
 
 
 # --- 2. FastAPI Setup ---
@@ -42,10 +43,9 @@ def predict(data: IrisInput):
     input_data = np.array([
         [data.sepal_length, data.sepal_width, data.petal_length, data.petal_width]
     ])
-
-    prediction_index = classifier.predict(input_data)[0]
-    predicted_species = IRIS_TARGET_NAMES[prediction_index]
     
+    predicted_species = classifier.predict(input_data)[0]
+    print(predicted_species)
     return {
         "prediction": predicted_species,
         "input_features": data.model_dump()

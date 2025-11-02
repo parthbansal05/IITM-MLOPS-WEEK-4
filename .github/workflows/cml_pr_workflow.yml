@@ -100,12 +100,14 @@ jobs:
       # DEBUG STEP: This will print the value and show us if it's empty.
       - name: DEBUG - Print received image URL
         run: echo "The image URL received from the build job is ${{ needs.build-and-push-docker.outputs.image_url }}"
+      - name: Verify
+        run: echo "The image URL received from the build job is ${{ secrets.GAR_LOCATION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/iris-app-repo/iris-fastapi-app:${{ github.sha }}"
 
       - name: Update Kubernetes deployment with new image URL
         run: |
           # This command finds and replaces the placeholder in your deployment file
           # with the actual image URL from the build job.
-          sed -i 's|IMAGE_URL_PLACEHOLDER|${{ needs.build-and-push-docker.outputs.image_url }}|g' k8s/deployment.yaml
+          sed -i 's|IMAGE_URL_PLACEHOLDER|${{ secrets.GAR_LOCATION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/iris-app-repo/iris-fastapi-app:${{ github.sha }}|g' k8s/deployment.yaml
 
       - name: Apply Kubernetes manifests
         run: |

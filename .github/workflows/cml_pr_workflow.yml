@@ -14,7 +14,7 @@ jobs:
 
     container:
       # Use a CML-optimized image with common ML dependencies pre-installed
-      image: docker://dvcorg/cml:0.24.1 
+      image: docker://ghcr.io/iterative/cml:0-dvc2-base1
 
     steps:
       - name: Checkout Repository

@@ -6,6 +6,8 @@ import joblib
 from sklearn.model_selection import train_test_split 
 from sklearn.metrics import accuracy_score, confusion_matrix
 import sys
+import numpy as np
+
 
 # Define file paths
 model_path = 'artifacts/svm_iris_model.joblib'

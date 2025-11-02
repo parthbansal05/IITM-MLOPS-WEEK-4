@@ -16,7 +16,6 @@ numpy
 pandas
 scikit-learn
 joblib
-dvc[gcs]
 cml
 
 

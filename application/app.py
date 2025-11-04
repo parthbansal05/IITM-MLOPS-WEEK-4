@@ -11,7 +11,7 @@ MODEL_PATH = "artifacts/svm_iris_model.joblib"
 
 # --- 2. FastAPI Setup ---
 
-app = FastAPI(title="IRIS CD API", version="1.0")
+app = FastAPI(title="IRIS CD API", version="2.1")
 
 # Input schema for Pydantic validation
 class IrisInput(BaseModel):
@@ -48,6 +48,6 @@ def predict(data: IrisInput):
     print(predicted_species)
     return {
         "prediction": predicted_species,
-        "version": 2,
+        "version": app.version,
         "input_features": data.model_dump()
     }
